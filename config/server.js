@@ -5,6 +5,7 @@ module.exports = ({ env }) => ({
     keys: env.array("APP_KEYS"),
   },
   url: env("URL", "https://new-todo-production.up.railway.app"),
+  proxy: true,
   webhooks: {
     populateRelations: env.bool("WEBHOOKS_POPULATE_RELATIONS", false),
   },

@@ -4,7 +4,8 @@
   "info": {
     "singularName": "todo",
     "pluralName": "todos",
-    "displayName": "todo"
+    "displayName": "todo",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
@@ -14,6 +15,12 @@
     "todoText": {
       "type": "string",
       "required": true
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "todos"
     }
   }
 }

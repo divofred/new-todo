@@ -368,12 +368,18 @@ export interface ApiTodoTodo extends Schema.CollectionType {
     singularName: 'todo';
     pluralName: 'todos';
     displayName: 'todo';
+    description: '';
   };
   options: {
     draftAndPublish: false;
   };
   attributes: {
     todoText: Attribute.String & Attribute.Required;
+    user: Attribute.Relation<
+      'api::todo.todo',
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::todo.todo', 'oneToOne', 'admin::user'> &
@@ -784,6 +790,11 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'plugin::users-permissions.user',
       'manyToOne',
       'plugin::users-permissions.role'
+    >;
+    todos: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToMany',
+      'api::todo.todo'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
